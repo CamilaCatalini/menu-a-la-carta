@@ -1,0 +1,89 @@
+ <div  id="platos" class="container-fluid vh-100">
+    <div class="col-md-12 d-flex justify-content-center">
+        <img id="icono" class="col-md-6 img-fluid" src="../../assets/iconos/icono1.png">           
+    </div>
+    <div id="menu" class="container-fluid p-0 m-0">
+        <div class="row d-flex justify-content-between">
+            <div class="col-md-8">
+                <p class="col-md-12 text-center" style="font-size: 2rem;"> Platos</p>
+                <div class="col-md-12">
+                    <div class="row">
+                        <!--<div class="col-md-6"  *ngFor="let plato of platos; let i=index">
+                            <label><input type="checkbox" id="plato{{i}}" value="first_checkbox">
+                                <button class="popup" (click)="mostrarPlato(plato.id)">
+                                    {{plato.title | slice:0:30 }}... <b *ngIf="plato.vegano">(vegano)</b>{{plato.price}}
+                                </button>
+                            </label>
+                            <div class="col-md-12 d-flex justify-content-center info-platos" id="info-plato{{plato.id}}">
+                                <p class="col-md-12">{{plato.title}}</p>
+                                <div class="col-md-12">
+                                    <img src="{{plato.img}}" class="img-fluid">
+                                </div>
+                            </div>
+                        </div> -->
+                            <div id="list_dishes" class="col-md-6"  *ngFor="let plato of platos; let i=index">
+                                <div class="row">
+                                    <label class="col-md-1" (click)="checkCombinationOfDishes(i)">
+                                        <input type="checkbox" id="dish_{{plato['data']['id']}}" value="first_checkbox">
+                                    </label>
+                                    <div class="col-md-11 d-flex justify-content-between">
+                                        <a class="col-md-10 popup text-left" (click)="showDish(i)">
+                                            {{plato['data']['title'] | slice:0:40 }} <b *ngIf="plato['data']['vegan']">(vegano)</b>
+                                        </a>
+                                        {{plato['data']['price']}}
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div id="dish_check" class="py-4" *ngIf="platos">
+                                <div class="col-md-12 ">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="text-center">{{title_dish}}</p>
+                                            <p>Tiempo de coccion: {{time_dish}}</p>
+                                            <p>Health Score: {{hs_dish}}</p>
+                                            <p>Health Score: {{type_dish}}</p>
+                                        </div>
+                                        <div class="col-md-6 d-flex justify-content-center">
+                                            <img src="{{img_dish}}" id="img_dish">
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-md-3 px-4">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <p class="col-md-12 text-center" style="font-size: 2rem;"> Detalle del menu </p>
+                    </div>
+                    <div >
+                        <div id="healt-score" class="d-flex justify-content-end">
+                            <p class="col-md-12 text-end">Healt Score: {{health_score | number: '2.1'}}%</p>
+                        </div>
+                        <div id="platos-menu">
+                        </div>
+                        <hr>
+                        <div class="col-md-12">
+                            <div class="row d-flex justify-content-between">
+                                <p class="col-md-4">Total</p>
+                                <p class="col-md-4 text-end">${{total_menu | number: '2.2' }}</p>
+                            </div>
+                            <div id="mistake">
+                                <p>{{type_mistake}}</p>
+                            </div>
+                            <div class="col-md-12 d-flex justify-content-center">
+                                <button>Confirmar menu</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

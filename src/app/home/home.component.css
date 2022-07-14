@@ -1,0 +1,56 @@
+#platos{
+    background-image: url('../../assets/fondos/rough-dark-brown-texture-free-photo.jpg');
+    height: 100vh;
+    width: 100vw;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+
+*{
+    color: black;
+    font-weight: bolder;
+}
+
+
+#icono{
+    height: 150px;
+    width: 150px;
+}
+label b{
+    color: rgb(10, 46, 24);
+    font-weight: normal;
+}
+
+#platos-menu{
+    height: 250px;
+}
+
+hr{
+    margin: 0;
+    opacity: 1;
+    color: black;
+    height: 3px;
+}
+
+#list_dishes{
+    position: relative;
+    z-index: 1;
+}
+
+#dish_check{
+    color: black !important;
+}
+
+#img_dish{
+    height: 200px;
+    width: 350px;
+}
+
+#mistake{
+    height: 50px;
+}
+
+#mistake p{
+    color: rgb(121, 16, 16) !important;
+}

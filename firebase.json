@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/menu-a-la-carta",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

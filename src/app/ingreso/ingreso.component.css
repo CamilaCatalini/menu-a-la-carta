@@ -1,0 +1,18 @@
+#background-image{
+    background-image: url('../../assets/images/bar-gbc6df3f11_1920.jpg');
+    height: 100vh;
+    width: 100vw;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+
+
+button{
+    color: white;
+}
+
+#icono{
+    height: 300px;
+    width: 300px;
+}
