@@ -2,6 +2,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { MenuApiService } from '../services/menuApi/menu-api.service';
 import { Plato } from '../user/models/plato-model';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -114,15 +115,19 @@ export class HomeComponent implements OnInit {
     }
 ]
 
-  constructor(private menuApi:MenuApiService) { }
+  constructor(private menuApi:MenuApiService, private _auth : AuthService) { }
 
   ngOnInit(): void {
     this.clasificarPlatosPrueba(this.xxx);
-    
+    //this.getMenu();
+  }
+
+  logOut(){
+    this._auth.logOut();
   }
 
   getMenu(){
-    this.menuApi.getPlatos('2').subscribe(data=>{
+    this.menuApi.getPlatos('10').subscribe(data=>{
       this.clasificarPlatos(data['results']);
     })
   }

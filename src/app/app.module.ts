@@ -15,13 +15,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { IngresoComponent } from './ingreso/ingreso.component';
 import { OrderReadyComponent } from './order-ready/order-ready.component';
+import { UserVerificationComponent } from './user-verification/user-verification.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     IngresoComponent,
-    OrderReadyComponent
+    OrderReadyComponent,
+    UserVerificationComponent
   ],
   imports: [
     BrowserModule,
