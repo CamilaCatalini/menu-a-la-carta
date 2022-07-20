@@ -19,6 +19,12 @@
     height: 120px;
     width: 120px;
 }
+
+#log-out{
+    position: absolute;
+    z-index: 5;
+}
+
 label b{
     color: rgb(10, 46, 24);
     font-weight: normal;

@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
-import { UsuarioApiService } from '../services/usuarioApi/usuario-api.service'; 
-import { AppComponent } from '../app.component';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth/auth.service';
 
 import * as $ from 'jquery';
 
@@ -11,24 +11,25 @@ import * as $ from 'jquery';
 })
 export class IngresoComponent implements OnInit {
 
-  constructor(private usuario: UsuarioApiService, private app: AppComponent) { }
+
+  constructor(private _auth : AuthService, private _router: Router) { }
 
   ngOnInit(): void {
+    this.logOut();
   }
 
-  validar(){
-    var usuario = $("#mail").val();
+  logOut(){
+    this._auth.logOut();
+  }
+
+  logIn(){
+    var mail = $("#mail").val();
     var password = $("#password").val();
 
-    this.usuario.cambiarUsuario(String(usuario));
-    this.usuario.cambiarPassword(String(password));
-    
+    this._auth.login(String(mail), String(password)).then(res=> {
+      this._router.navigate(['home']);
+    });
 
-    console.log(this.usuario.usuario)
-
-    if((this.usuario.usuario == 'challenge@alkemy.org')&&(this.usuario.password == 'react')){
-      window.location.href="http://localhost:4200/home";
-    }
   }
 
 }
