@@ -35,94 +35,94 @@ export class HomeComponent implements OnInit {
     {
         "id": 715594,
         "title": "Homemade Garlic and Basil French Fries",
-        "vegano": true,
+        "vegan": true,
         "healthScore": 77,
-        "price": 83.23,
-        "img": "https://spoonacular.com/recipeImages/715594-556x370.jpg"
+        "pricePerServing": 83.23,
+        "image": "https://spoonacular.com/recipeImages/715594-556x370.jpg"
     },
     {
         "id": 716381,
         "title": "Nigerian Snail Stew",
-        "vegano": false,
+        "vegan": false,
         "healthScore": 89,
-        "price": 908.06,
-        "img": "https://spoonacular.com/recipeImages/716381-556x370.jpg"
+        "pricePerServing": 908.06,
+        "image": "https://spoonacular.com/recipeImages/716381-556x370.jpg"
     },
     {
         "id": 716426,
         "title": "Cauliflower, Brown Rice, and Vegetable Fried Rice",
-        "vegano": true,
+        "vegan": true,
         "healthScore": 76,
-        "price": 112.39,
-        "img": "https://spoonacular.com/recipeImages/716426-556x370.jpg"
+        "pricePerServing": 112.39,
+        "image": "https://spoonacular.com/recipeImages/716426-556x370.jpg"
     },
     {
         "id": 794349,
         "title": "Broccoli and Chickpea Rice Salad",
-        "vegano": true,
+        "vegan": true,
         "healthScore": 100,
-        "price": 137.57,
-        "img": "https://spoonacular.com/recipeImages/794349-556x370.jpg"
+        "pricePerServing": 137.57,
+        "image": "https://spoonacular.com/recipeImages/794349-556x370.jpg"
     },
     {
         "id": 782601,
         "title": "Red Kidney Bean Jambalaya",
-        "vegano": true,
+        "vegan": true,
         "healthScore": 100,
-        "price": 185.77,
-        "img": "https://spoonacular.com/recipeImages/782601-556x370.jpg"
+        "pricePerServing": 185.77,
+        "image": "https://spoonacular.com/recipeImages/782601-556x370.jpg"
     },
     {
         "id": 716268,
         "title": "African Chicken Peanut Stew",
-        "vegano": false,
+        "vegan": false,
         "healthScore": 100,
-        "price": 355.78,
-        "img": "https://spoonacular.com/recipeImages/716268-556x370.jpg"
+        "pricePerServing": 355.78,
+        "image": "https://spoonacular.com/recipeImages/716268-556x370.jpg"
     },
     {
         "id": 715446,
         "title": "Slow Cooker Beef Stew",
-        "vegano": false,
+        "vegan": false,
         "healthScore": 100,
-        "price": 293.64,
-        "img": "https://spoonacular.com/recipeImages/715446-556x370.jpg"
+        "pricePerServing": 293.64,
+        "image": "https://spoonacular.com/recipeImages/715446-556x370.jpg"
     },
     {
         "id": 715415,
         "title": "Red Lentil Soup with Chicken and Turnips",
-        "vegano": false,
+        "vegan": false,
         "healthScore": 73,
-        "price": 276.67,
-        "img": "https://spoonacular.com/recipeImages/715415-556x370.jpg"
+        "pricePerServing": 276.67,
+        "image": "https://spoonacular.com/recipeImages/715415-556x370.jpg"
     },
     {
         "id": 715497,
         "title": "Berry Banana Breakfast Smoothie",
-        "vegano": false,
+        "vegan": false,
         "healthScore": 63,
-        "price": 204.29,
-        "img": "https://spoonacular.com/recipeImages/715497-556x370.jpg"
+        "pricePerServing": 204.29,
+        "image": "https://spoonacular.com/recipeImages/715497-556x370.jpg"
     },
     {
         "id": 644387,
         "title": "Garlicky Kale",
-        "vegano": true,
+        "vegan": true,
         "healthScore": 92,
-        "price": 69.09,
-        "img": "https://spoonacular.com/recipeImages/644387-556x370.jpg"
+        "pricePerServing": 69.09,
+        "image": "https://spoonacular.com/recipeImages/644387-556x370.jpg"
     }
 ]
 
   constructor(private menuApi:MenuApiService) { }
 
   ngOnInit(): void {
-    this.getMenu();
+    this.clasificarPlatosPrueba(this.xxx);
     
   }
 
   getMenu(){
-    this.menuApi.getPlatos('4').subscribe(data=>{
+    this.menuApi.getPlatos('2').subscribe(data=>{
       this.clasificarPlatos(data['results']);
     })
   }
@@ -164,14 +164,12 @@ export class HomeComponent implements OnInit {
 
   showDish(id: number){
     if(this.platos[id]['data']['vegan']){
-      console.log('vegan')
       this.type_dish = 'vegano';
     }else{
-      console.log(' no vegano')
       this.type_dish = 'no vegano';
     }
     this.title_dish = this.platos[id]['data']['title'];
-    this.img_dish = this.platos[id]['data']['img'];
+    this.img_dish = this.platos[id]['data']['image'];
     this.time_dish = this.platos[id]['data']['time'];
     this.hs_dish = this.platos[id]['data']['healthScore'];
     
@@ -180,7 +178,7 @@ export class HomeComponent implements OnInit {
   chooseDish(id: number){
     var id_dish = this.platos[id]['data']['id'];
     $( "#platos-menu" )
-    .append( "<div id='dish_menu"+id_dish+"' class='row d-flex justify-content-between'><p class='col-md-8'>"+this.platos[id]['data']['title']+"</p><p class='col-md-3 text-end'>"+this.platos[id]['data']['price']+"</p></div>" );
+    .append( "<div id='dish_menu"+id_dish+"' class='dishes-menu row d-flex justify-content-between'><p class='col-md-8'>"+this.platos[id]['data']['title']+"</p><p class='col-md-3 text-end'>"+this.platos[id]['data']['price']+"</p></div>" );
     this.total_menu = this.total_menu + this.platos[id]['data']['price'];
   }
 
@@ -223,6 +221,10 @@ export class HomeComponent implements OnInit {
     this.health_score = 0;
     this.number_of_dishes = 0;
     this.total_health_score = 0;
+    this.type_mistake = '';
+    this.number_vegan_dish = 0;
+    this.number_non_vegan_dish = 0;
+    $(".dish-check").prop("checked", false);
   }
 
   checkBox(id: number){
@@ -259,6 +261,18 @@ export class HomeComponent implements OnInit {
       }else{
         this.type_mistake = "No puedes agregar mas platos no veganos";
       }
+    }
+  }
+
+  sendOrder(){
+    if((this.number_non_vegan_dish==2)&&(this.number_vegan_dish==2)){
+      this.total_menu = 0;
+      this.resettingValues();
+      $('.dishes-menu').remove();
+      $("#order-ready").css("display","block");
+      $("#platos").css("filter","brightness(0.4)");
+    }else{
+      this.type_mistake = "Orden incompleta";
     }
   }
   

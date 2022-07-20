@@ -1,0 +1,16 @@
+#send-order{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 5;
+}
+
+#order-okey{
+    height: 200px;
+    background-color: aliceblue;
+}
+
+#icon-ok{
+    height: 20px;
+    width: 20px;
+}

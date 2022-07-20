@@ -6,7 +6,7 @@ export class Plato{
     healthScore: number;
     price: number;
     time: number;
-    img: string; 
+    image: string; 
  
     constructor(plato: any){
         this.id = plato['id'],
@@ -17,7 +17,7 @@ export class Plato{
         this.price = plato['pricePerServing'],
         //this.price = plato['price'],
         this.time = plato['readyInMinutes'],
-        this.img = plato['image']
+        this.image = plato['image']
     }
 
     public getId(){
@@ -37,6 +37,6 @@ export class Plato{
         return this.price;
     }
     public getImg(){
-        return this.img;
+        return this.image;
     }
 }

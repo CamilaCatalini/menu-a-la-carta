@@ -5,5 +5,5 @@ export interface Plato {
     healthScore: number,
     price: number,
     time: number
-    img: string,
+    image: string,
 } 
