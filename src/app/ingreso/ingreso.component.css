@@ -5,14 +5,43 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover; 
+    filter: brightness(0.4);
+    position: absolute;
+    z-index: 1;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
+#login{
+    position: absolute;
+    z-index: 3;
+    
+}
+
+#login div{
+    
+    background-color: rgba(255, 255, 255, 0.4);
+}
 
 button{
     color: white;
 }
 
 #icono{
+    background-color: transparent !important;
+}
+
+#icono img{
     height: 300px;
     width: 300px;
+}
+
+#login-date{
+    background-color: transparent !important;
+}
+
+#label-mail, #label-password{
+    width: 100%;
+    background-color: rgb(201, 22, 22);
+    color: white;
 }
