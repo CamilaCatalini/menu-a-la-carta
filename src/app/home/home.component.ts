@@ -118,11 +118,16 @@ export class HomeComponent implements OnInit {
   constructor(private menuApi:MenuApiService, private _auth : AuthService) { }
 
   ngOnInit(): void {
-    this.clasificarPlatosPrueba(this.xxx);
-    //this.getMenu();
+    //this.clasificarPlatosPrueba(this.xxx);
+    this.getMenu();
   }
 
-  logOut(){
+  public showOrder(){
+    console.log("entre");
+    return false;
+  }
+
+  public logOut(){
     this._auth.logOut();
   }
 
@@ -183,7 +188,7 @@ export class HomeComponent implements OnInit {
   chooseDish(id: number){
     var id_dish = this.platos[id]['data']['id'];
     $( "#platos-menu" )
-    .append( "<div id='dish_menu"+id_dish+"' class='dishes-menu row d-flex justify-content-between'><p class='col-md-8'>"+this.platos[id]['data']['title']+"</p><p class='col-md-3 text-end'>"+this.platos[id]['data']['price']+"</p></div>" );
+    .append( "<div id='dish_menu"+id_dish+"' class='dishes-menu row d-flex justify-content-between'><p class='col-md-8 col-7'>"+this.platos[id]['data']['title']+"</p><p class='col-md-3 col-2 text-end'>"+this.platos[id]['data']['price']+"</p></div>" );
     this.total_menu = this.total_menu + this.platos[id]['data']['price'];
   }
 

@@ -18,6 +18,10 @@
     
 }
 
+#login-2{
+    height: 600;
+}
+
 #login div{
     
     background-color: rgba(255, 255, 255, 0.4);
@@ -44,4 +48,18 @@ button{
     width: 100%;
     background-color: rgb(201, 22, 22);
     color: white;
+}
+
+@media (max-width: 480px) {
+    #icono img{
+        height: 180px;
+        width: 180px;
+    }
+
+    #login-2{
+        height: 380;
+    }
+
+    
+    
 }

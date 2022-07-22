@@ -14,6 +14,9 @@
     font-weight: bolder;
 }
 
+#show-order{
+    display: none;
+}
 
 #icono{
     height: 120px;
@@ -75,4 +78,58 @@ hr{
 
 button{
     color: white;
+}
+
+@media (max-width: 480px) {
+
+
+    #icono{
+        height: 110px;
+        width: 110px;
+    }
+    
+    #show-order{
+        display: block;
+    }
+    
+    #platos{
+        background-attachment: fixed;
+        overflow: scroll;
+    }
+
+    #platos-menu{
+        height: 240px;
+        font-size: 0.8rem;
+    }
+
+    #mistake{
+        height: 30px;
+    }
+
+    #btn-confirm {
+        margin: 3% 0;
+    }
+
+    #list_dishes{
+        font-size: 0.8rem;
+    }
+
+    #log-out{
+        padding: 0 !important;
+        margin: 0;
+        
+    }
+
+    #log-out button{
+        font-size: 0.7rem;
+    }
+
+    #dish-info-2{
+        font-size: 0.7rem;
+    }
+
+    #img-dish{
+        height: 150px;
+    }
+    
 }
