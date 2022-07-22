@@ -1,8 +1,9 @@
  <div  id="platos" class="container-fluid vh-100">
     <div class="col-md-12 d-flex justify-content-center p-0 m-0">
-        <img id="icono" class="col-md-6 img-fluid" src="../../assets/iconos/icono1.png">     
-        <div id="log-out" class="col-md-12 d-flex justify-content-end p-3">
-            <button class="btn" style="background-color: rgb(201, 22, 22);" (click)="logOut()">Cerrar session</button>
+        <img id="icono" class="col-md-6 col-4 img-fluid" src="../../assets/iconos/icono1.png">     
+        <div id="log-out" class="col-md-12 col-12 d-flex justify-content-end p-3">
+            
+            <button class="btn col-3" style="background-color: rgb(201, 22, 22);" (click)="logOut()">Cerrar session</button>
         </div> 
     </div>
       
@@ -17,10 +18,10 @@
                     <div class="row">
                             <div id="list_dishes" class="col-md-6"  *ngFor="let plato of platos; let i=index">
                                 <div class="row">
-                                    <label class="col-md-1" (click)="checkCombinationOfDishes(i)">
+                                    <label class="col-md-1 col-1" (click)="checkCombinationOfDishes(i)">
                                         <input class="dish-check" type="checkbox" id="dish_{{plato['data']['id']}}" value="first_checkbox">
                                     </label>
-                                    <div class="col-md-11 d-flex justify-content-between">
+                                    <div class="col-md-11 col-11 d-flex justify-content-between">
                                         <a class="col-md-10 popup text-left" (click)="showDish(i)">
                                             {{plato['data']['title'] | slice:0:40 }} <b *ngIf="plato['data']['vegan']">(vegano)</b>
                                         </a>
@@ -34,10 +35,10 @@
                                     <div class="row d-flex justify-content-between">
                                         <div class="col-md-6">
                                             <p class="text-center">{{title_dish}}</p>
-                                            <div class="px-2">
+                                            <div id="dish-info-2" class="px-2">
                                                 <p>Tiempo de coccion: {{time_dish}}</p>
                                                 <p>Health Score: {{hs_dish}}</p>
-                                                <p>Health Score: {{type_dish}}</p>
+                                                <p>Tipo de plato: {{type_dish}}</p>
                                             </div>
 
                                             
@@ -54,7 +55,7 @@
                     
                 </div>
             </div>
-            <div class="col-md-3 px-4">
+            <div id="order" class="col-md-3 px-4">
                 <div class="row justify-content-center">
                     <div class="col-md-12">
                         <p class="col-md-12 text-center" style="font-size: 2rem;"> Detalle del menu </p>
@@ -69,13 +70,13 @@
                         <hr>
                         <div class="col-md-12">
                             <div class="row d-flex justify-content-between">
-                                <p class="col-md-4">Total</p>
-                                <p class="col-md-4 text-end">${{total_menu | number: '2.2' }}</p>
+                                <p class="col-md-4 col-3">Total</p>
+                                <p class="col-md-4 col-4 text-end">${{total_menu | number: '2.2' }}</p>
                             </div>
                             <div id="mistake">
                                 <p>{{type_mistake}}</p>
                             </div>
-                            <div class="col-md-12 d-flex justify-content-center">
+                            <div id="btn-confirm" class="col-md-12 d-flex justify-content-center">
                                 <button class="btn" style="background-color: rgb(201, 22, 22);" (click)="sendOrder()">Confirmar menu</button>
                             </div>
                         </div>
