@@ -118,15 +118,10 @@ export class HomeComponent implements OnInit {
   constructor(private menuApi:MenuApiService, private _auth : AuthService) { }
 
   ngOnInit(): void {
-    //this.clasificarPlatosPrueba(this.xxx);
-    this.getMenu();
+    this.clasificarPlatosPrueba(this.xxx);
+    //this.getMenu();
   }
-
-  public showOrder(){
-    console.log("entre");
-    return false;
-  }
-
+  
   public logOut(){
     this._auth.logOut();
   }

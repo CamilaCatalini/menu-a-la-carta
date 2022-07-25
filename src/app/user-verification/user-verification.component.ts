@@ -27,7 +27,7 @@ export class UserVerificationComponent implements OnInit {
       this.user = res
     }else{
       this.login = false;
-      window.location.href="http://localhost:4200/";
+      window.location.href="/";
     }  
   });
 }
