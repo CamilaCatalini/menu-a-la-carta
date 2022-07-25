@@ -18,6 +18,10 @@ export class IngresoComponent implements OnInit {
     this.logOut();
   }
 
+  public deleteMsgError(){
+    $("#login-error").css("visibility","hidden");
+  }
+
   logOut(){
     this._auth.logOut();
   }
@@ -27,7 +31,12 @@ export class IngresoComponent implements OnInit {
     var password = $("#password").val();
 
     this._auth.login(String(mail), String(password)).then(res=> {
-      this._router.navigate(['home']);
+      if(res){
+        this._router.navigate(['home']);
+      }else{
+        $("#login-error").css("visibility","visible");
+      }
+      
     });
 
   }

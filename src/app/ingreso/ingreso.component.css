@@ -49,6 +49,10 @@ button{
     color: white;
 }
 
+#login-error{
+    visibility: hidden;
+}
+
 @media (max-width: 480px) {
     #icono img{
         height: 180px;

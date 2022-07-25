@@ -14,9 +14,8 @@ export class AuthService {
         return await this._auth.signInWithEmailAndPassword(email, password);
     }
     catch(error) {
-        alert("No se ha podido hacer el log-in correctamente. Error: " + error)
         console.log("No se ha podido hacer el log-in correctamente. Error: " + error);
-        return null;
+        return false;
     }
   }
 
