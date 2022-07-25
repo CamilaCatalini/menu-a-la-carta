@@ -133,3 +133,12 @@ button{
     }
     
 }
+
+@media (max-width: 1023px) {
+
+    #platos-menu{
+        height: 260px;
+        font-size: 0.7rem;
+    }
+    
+}

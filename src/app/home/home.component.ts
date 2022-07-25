@@ -144,7 +144,6 @@ export class HomeComponent implements OnInit {
         this.plato = new Plato(data);
         
         this.platos.push({ data : this.plato});
-        console.log(this.plato)
         this.showDish(0);
       })
       
@@ -233,7 +232,7 @@ export class HomeComponent implements OnInit {
   }
 
   checkBox(id: number){
-    
+    console.log(this.number_non_vegan_dish)
     if($("#dish_"+this.platos[id]['data']['id']).prop("checked") == true){
       this.number_of_dishes++;
       this.chooseDish(id);
@@ -244,7 +243,7 @@ export class HomeComponent implements OnInit {
       this.deleteDish(id);
       this.modifyHealtScore(this.platos[id]['data']['healthScore'], false);
     }
-    console.log(this.number_non_vegan_dish)
+    
   }
 
   checkCombinationOfDishes(id: number){

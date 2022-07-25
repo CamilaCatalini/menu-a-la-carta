@@ -6,21 +6,23 @@
             <img  class="col-md-6 img-fluid" src="../../assets/iconos/icono1.png">           
         </div>
         <div id="login-date"  class="col-md-12 row d-flex justify-content-center">
-            <form class="col-md-10 py-1 pb-3" style="background-color: rgb(201, 22, 22);">
+            <form class="col-md-10 py-1" style="background-color: rgb(201, 22, 22);">
                 <div class="m-1 form-group">
-                <label id="label-mail" for="exampleInputEmail1">Ingresar mail</label>
-                <input type="email" class="form-control" id="mail" aria-describedby="emailHelp" placeholder="Email">
+                <label id="label-mail" for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="mail" aria-describedby="emailHelp" placeholder="Enter email" (click)="deleteMsgError()">
                 </div>
                 <div class="m-1 form-group">
-                <label id="label-password"  for="exampleInputPassword1">Ingresar contraseña</label>
-                <input type="password" class="form-control" id="password" placeholder="Password">
+                <label id="label-password"  for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" (click)="deleteMsgError()">
                 </div>
                 
             </form>
             <div class="col-md-12 py-3 d-flex justify-content-center" style="background-color: transparent !important">
                 <button class="btn" style="background-color: rgb(201, 22, 22);" (click)="logIn()">Ingresar</button>
             </div>
-            
+            <div id="login-error" class="col-xl-12 text-center">
+                <p  style="color: rgb(121, 16, 16);">Mail o contraseña incorrecto!!!</p>
+            </div>
         </div>
     </div>
 </div>
