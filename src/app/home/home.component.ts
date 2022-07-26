@@ -31,7 +31,6 @@ export class HomeComponent implements OnInit {
 
   lista_platos : any[] = [];
   platos : any[] = [];
-
   xxx : any[] = [
     {
         "id": 715594,
@@ -118,10 +117,24 @@ export class HomeComponent implements OnInit {
   constructor(private menuApi:MenuApiService, private _auth : AuthService) { }
 
   ngOnInit(): void {
-    this.clasificarPlatosPrueba(this.xxx);
-    //this.getMenu();
+    //this.clasificarPlatosPrueba(this.xxx);
+    this.getMenu();
   }
-  
+
+  public searchDish(name_dish: string){
+    $(".list_dishes").css("display","none");
+    const search = name_dish == "" ? false : true;
+    if(search){
+      var list_dish_search = [];
+      list_dish_search = this.platos.filter(dish => dish.data.title.toLowerCase().includes(name_dish));
+      list_dish_search.forEach(dish=>{
+        $("#"+dish.data.id).css("display","block");
+      })
+    }else{
+      $(".list_dishes").css("display","block");
+    }
+  }
+
   public logOut(){
     this._auth.logOut();
   }
@@ -144,7 +157,7 @@ export class HomeComponent implements OnInit {
         this.plato = new Plato(data);
         
         this.platos.push({ data : this.plato});
-        this.showDish(0);
+        this.loadDish(0);
       })
       
     })
@@ -159,7 +172,7 @@ export class HomeComponent implements OnInit {
     this.lista_platos.forEach(element=>{
         this.plato = new Plato(element);
         this.platos.push({ data : this.plato});
-        
+        this.loadDish(0);
       });
 
       
@@ -167,16 +180,20 @@ export class HomeComponent implements OnInit {
   }
 
   showDish(id: number){
+    console.log(id)
     if(this.platos[id]['data']['vegan']){
       this.type_dish = 'vegano';
     }else{
       this.type_dish = 'no vegano';
     }
+    this.loadDish(id);
+  }
+
+  private loadDish(id: number){
     this.title_dish = this.platos[id]['data']['title'];
     this.img_dish = this.platos[id]['data']['image'];
     this.time_dish = this.platos[id]['data']['time'];
     this.hs_dish = this.platos[id]['data']['healthScore'];
-    
   }
 
   chooseDish(id: number){
