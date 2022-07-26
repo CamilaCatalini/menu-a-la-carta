@@ -7,6 +7,7 @@ IMPORTANTE!!! Como use la autenticacion que brinda Firebase, la contraseña debe
 Mail y contraseña para login.
 
 Mail: challenge@alkemy.org
+
 Contraseña: react2022
 
 Url de la aplicacion: (https://menu-a-la-carta-e4b83.web.app/)
