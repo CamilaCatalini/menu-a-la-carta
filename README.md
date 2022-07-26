@@ -9,6 +9,8 @@ Mail y contraseña para login.
 Mail: challenge@alkemy.org
 Contraseña: react2022
 
+Url de la aplicacion: (https://menu-a-la-carta-e4b83.web.app/)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
