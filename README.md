@@ -2,6 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
 
+IMPORTANTE!!! Como use la autenticacion que brinda Firebase, la contraseña debe tener mas de 6 caracteres por ende no puede ser solo react
+
+Mail y contraseña para login.
+
+Mail: challenge@alkemy.org
+Contraseña: react2022
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
