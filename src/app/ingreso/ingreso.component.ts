@@ -7,7 +7,7 @@ import * as $ from 'jquery';
 @Component({
   selector: 'app-ingreso',
   templateUrl: './ingreso.component.html',
-  styleUrls: ['./ingreso.component.css']
+  styleUrls: ['./ingreso.component.css'],
 })
 export class IngresoComponent implements OnInit {
 
