@@ -1,3 +1,8 @@
+*, a {
+    color: rgb(0, 0, 0) !important;
+    font-weight: bolder;
+}
+
 #platos{
     position: absolute;
     z-index: 1;
@@ -9,9 +14,12 @@
     background-size: cover; 
 }
 
-*{
-    color: black;
-    font-weight: bolder;
+a:hover{
+    color: brown !important;
+}
+
+#title-dish, #title-menu{
+    font-size: 2rem;
 }
 
 #form-search-dish input{
@@ -51,7 +59,7 @@ label b{
 }
 
 #platos-menu{
-    height: 250px;
+    height: 270px;
 }
 
 hr{
@@ -80,8 +88,8 @@ hr{
     width: 350px;
 }
 
-#mistake{
-    height: 50px;
+#mistake p{
+    height: 40px;
 }
 
 #mistake p{
@@ -92,12 +100,31 @@ hr{
     display: none;
 }
 
-button{
-    color: white;
+#log-out button{
+    color: white !important;
+}
+
+#btn-confirm button{
+    color: white !important;
+}
+
+@media (max-width: 460px) {
+
+    #title-dish, #title-menu{
+        font-size: 1.4rem;
+    }
+
+    #platos-menu{
+        height: 200px !important;
+        font-size: 0.8rem !important;
+    }
 }
 
 @media (max-width: 770px) {
 
+    #title-dish, #title-menu{
+        font-size: 1.4rem;
+    }
 
     #icono{
         height: 110px;

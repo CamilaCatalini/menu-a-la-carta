@@ -10,10 +10,10 @@
         <div class="row d-flex justify-content-between">
             <div class="col-xl-8 col-lg-7">
                 <div class="col-lg-12 row d-flex justify-content-between" >
-                    <p class="col-lg-6 col-md-6 text-center" style="font-size: 2rem;"> Platos</p>
+                    <p id="title-dish" class="col-lg-6 col-md-6 text-center" > Platos</p>
                     <div class="col-lg-4 col-md-6 pt-2">
                         <form id="form-search-dish" class="row form-inline">
-                            <input #nameDish (keyup)="searchDish(nameDish.value)"  type="search" name="nameDish" aria-label="Search" placeholder="Ingresar plato">
+                            <input #nameDish (keyup)="searchDish(nameDish.value)"  type="search" name="nameDish" aria-label="Search" placeholder="Ingresar plato" autocomplete="off">
                         </form>
                     </div>
                 </div>
@@ -21,12 +21,12 @@
                     <div class="row">
                             <div class="list_dishes col-lg-6"  *ngFor="let plato of platos ; let i=index" id="{{plato['data']['id']}}">
                                 <div class="row">
-                                    <label class="col-lg-1 col-1" (click)="checkCombinationOfDishes(i)">
+                                    <label class="col-lg-1 col-1" (click)="checkTypeDish(i, plato['data']['id'])">
                                         <input class="dish-check" type="checkbox" id="dish_{{plato['data']['id']}}" value="first_checkbox">
                                     </label>
                                     <div class="col-lg-11 col-11 d-flex justify-content-between">
                                         <a class="col-lg-10 popup text-left" (click)="showDish(i)">
-                                            {{plato['data']['title'] | slice:0:40 }} <b *ngIf="plato['data']['vegan']" style="color: rgb(121, 16, 16)">(vegano)</b>
+                                            {{plato['data']['title'] | slice:0:40 }} <b *ngIf="plato['data']['vegan']" style="color: rgb(121, 16, 16) !important">(vegano)</b>
                                         </a>
                                         {{plato['data']['price']}}
                                     </div>
@@ -42,16 +42,12 @@
                                                 <p>Health Score: {{hs_dish}}</p>
                                                 <p>Tipo de plato: {{type_dish}}</p>
                                             </div>
-
-                                            
                                         </div>
                                         <div class="col-lg-6 d-flex justify-content-center">
                                             <img src="{{img_dish}}" id="img_dish" class="img-fluid">
                                         </div>
-                                        
                                     </div>
                                 </div>
-                                
                             </div>
                     </div>
                     
@@ -60,7 +56,7 @@
             <div id="order" class="col-xl-3 col-lg-4 px-4">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
-                        <p class="col-lg-12 text-center" style="font-size: 2rem;"> Detalle del menu </p>
+                        <p id="title-menu" class="col-lg-12 text-center"> Detalle del menu </p>
                     </div>
                     <hr>
                     <div class="pt-2">

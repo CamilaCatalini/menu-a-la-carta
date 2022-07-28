@@ -1,4 +1,4 @@
-import { ThrowStmt } from '@angular/compiler';
+import { ConditionalExpr, ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { MenuApiService } from '../services/menuApi/menu-api.service';
 import { Plato } from '../user/models/plato-model';
@@ -7,17 +7,14 @@ import { AuthService } from '../services/auth/auth.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 
 export class HomeComponent implements OnInit {
 
   total_menu = 0;
-  number_of_dishes = 0;
   total_health_score = 0;
   health_score = 0;
-  number_vegan_dish = 0;
-  number_non_vegan_dish = 0 ;
   type_mistake = "";
 
   img_dish = '';
@@ -25,6 +22,9 @@ export class HomeComponent implements OnInit {
   time_dish = '';
   type_dish = '';
   hs_dish = '';
+
+  array_vegan_dish : any[] = [];
+  array_non_vegan_dish : any[] = [];
 
   plato! : Plato;
   show_home : boolean = false;
@@ -126,7 +126,7 @@ export class HomeComponent implements OnInit {
     const search = name_dish == "" ? false : true;
     if(search){
       var list_dish_search = [];
-      list_dish_search = this.platos.filter(dish => dish.data.title.toLowerCase().includes(name_dish));
+      list_dish_search = this.platos.filter(dish => dish.data.title.toLowerCase().includes(name_dish.toLowerCase()));
       list_dish_search.forEach(dish=>{
         $("#"+dish.data.id).css("display","block");
       })
@@ -142,6 +142,7 @@ export class HomeComponent implements OnInit {
   getMenu(){
     this.menuApi.getPlatos('10').subscribe(data=>{
       this.clasificarPlatos(data['results']);
+      this.showDish(0);
     })
   }
 
@@ -180,7 +181,6 @@ export class HomeComponent implements OnInit {
   }
 
   showDish(id: number){
-    console.log(id)
     if(this.platos[id]['data']['vegan']){
       this.type_dish = 'vegano';
     }else{
@@ -196,97 +196,89 @@ export class HomeComponent implements OnInit {
     this.hs_dish = this.platos[id]['data']['healthScore'];
   }
 
-  chooseDish(id: number){
-    var id_dish = this.platos[id]['data']['id'];
+  private chooseDish(chosen_dish: any){
+    console.log(chosen_dish)
     $( "#platos-menu" )
-    .append( "<div id='dish_menu"+id_dish+"' class='dishes-menu row d-flex justify-content-between'><p class='col-md-8 col-7'>"+this.platos[id]['data']['title']+"</p><p class='col-md-3 col-2 text-end'>"+this.platos[id]['data']['price']+"</p></div>" );
-    this.total_menu = this.total_menu + this.platos[id]['data']['price'];
+    .append( "<div id='dish_menu"+chosen_dish.id+"' class='dishes-menu row d-flex justify-content-between'><p class='col-md-8 col-7 p-0'>"+chosen_dish.title+"</p><p class='col-md-3 col-2 text-end'>"+chosen_dish.price+"</p></div>" );
+    this.total_menu = this.total_menu + chosen_dish.price;
+    this.modifyHealtScore(chosen_dish.healthScore , true);
   }
 
   deleteDish(id: number){
-    if(this.platos[id]['data']['vegan']){
-      this.number_vegan_dish--;
-    }else{
-      this.number_non_vegan_dish--;
-    }
     $("#dish_menu"+this.platos[id]['data']['id']).remove();
     this.total_menu = this.total_menu - this.platos[id]['data']['price'];
-    
+    this.modifyHealtScore(this.platos[id]['data']['healthScore'] , false);
   }
 
-  modifyHealtScore(hs: number, check: boolean){
-    
+  private modifyHealtScore(hs: number, check: boolean){
+    console.log(hs)
+    console.log(this.array_vegan_dish.length+this.array_non_vegan_dish.length)
     if(check){
       this.total_health_score+=hs;
-      this.health_score = this.total_health_score / this.number_of_dishes;
+      this.health_score = this.total_health_score / (this.array_vegan_dish.length+this.array_non_vegan_dish.length)  ;
     }else{
-      if(this.number_of_dishes>0){
+      if(this.array_vegan_dish.length+this.array_non_vegan_dish.length>0){
         this.total_health_score-=hs;
-        this.health_score = this.total_health_score / this.number_of_dishes;
-        
-      }else{
-        this.resettingValues();
+        this.health_score = this.total_health_score / (this.array_vegan_dish.length+this.array_non_vegan_dish.length);
       }
     }
-  }
-
-  checkDishType(id: number){
-    if(this.platos[id]['data']['vegan']){
-      this.number_vegan_dish++;
-    }else{
-      this.number_non_vegan_dish++;
+    if(this.array_vegan_dish.length+this.array_non_vegan_dish.length == 0){
+      this.resettingValues()
     }
   }
 
-  resettingValues(){
+  private resettingValues(){
     this.health_score = 0;
-    this.number_of_dishes = 0;
     this.total_health_score = 0;
     this.type_mistake = '';
-    this.number_vegan_dish = 0;
-    this.number_non_vegan_dish = 0;
+    this.array_vegan_dish = [];
+    this.array_non_vegan_dish = [];
     $(".dish-check").prop("checked", false);
   }
 
-  checkBox(id: number){
-    console.log(this.number_non_vegan_dish)
-    if($("#dish_"+this.platos[id]['data']['id']).prop("checked") == true){
-      this.number_of_dishes++;
-      this.chooseDish(id);
-      this.checkDishType(id);
-      this.modifyHealtScore(this.platos[id]['data']['healthScore'], true);
-    }else{
-      this.number_of_dishes--;
-      this.deleteDish(id);
-      this.modifyHealtScore(this.platos[id]['data']['healthScore'], false);
-    }
+  private combinationOfDishes(list_dishes: any[] , id: number, dish: number, type: string){
+
+      if((list_dishes.length < 2 )&&($("#dish_"+this.platos[id]['data']['id']).prop("checked") == true)){
+        list_dishes.push(this.platos[id]['data']);
+        this.chooseDish(this.platos[id]['data']);
+      }else{
+        if((list_dishes[0].id == dish)||(list_dishes[1].id==dish)){
+          if(type == 'vegan'){
+            this.array_vegan_dish = list_dishes.filter((item: { id: number; })=>{
+              return item.id !== dish;
+            })
+          }else{
+            this.array_non_vegan_dish = list_dishes.filter((item: { id: number; })=>{
+              return item.id !== dish;
+            })
+            
+          }
+          this.deleteDish(id);
+        }else{
+          $("#dish_"+this.platos[id]['data']['id']).prop("checked", false);
+          if(type == 'vegan'){
+            this.type_mistake = "No puedes agregar mas platos veganos";
+          }else{
+            this.type_mistake = "No puedes agregar mas platos no veganos";
+          }
+          
+        }
+      }
     
   }
 
-  checkCombinationOfDishes(id: number){
-
-    if((this.platos[id]['data']['vegan']==true)&&(this.number_vegan_dish<2)){
-      this.type_mistake = "";
-      this.checkBox(id);
-    }else if((this.platos[id]['data']['vegan']==false)&&(this.number_non_vegan_dish<2)){
-      this.type_mistake = "";
-      this.checkBox(id);
-    }else if($("#dish_"+this.platos[id]['data']['id']).prop("checked") == false){
-      this.type_mistake = "";
-      this.checkBox(id);
+  public checkTypeDish(id: number, dish: number){
+    this.type_mistake = '';
+    if(this.platos[id]['data']['vegan']==true){
+      this.combinationOfDishes(this.array_vegan_dish, id, dish, 'vegan');
     }else{
-      console.log(this.number_vegan_dish)
-      $("#dish_"+this.platos[id]['data']['id']).prop("checked", false);
-      if(this.number_vegan_dish==2){
-        this.type_mistake = "No puedes agregar mas platos veganos";
-      }else{
-        this.type_mistake = "No puedes agregar mas platos no veganos";
-      }
+      this.combinationOfDishes(this.array_non_vegan_dish, id, dish, 'no_vegan');
     }
+  
   }
 
   sendOrder(){
-    if((this.number_non_vegan_dish==2)&&(this.number_vegan_dish==2)){
+    if(this.array_vegan_dish.length+this.array_non_vegan_dish.length == 4){
       this.total_menu = 0;
       this.resettingValues();
       $('.dishes-menu').remove();

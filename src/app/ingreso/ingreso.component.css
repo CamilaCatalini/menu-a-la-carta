@@ -21,17 +21,13 @@
 
 #login-2{
     height: 100vh;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(177, 168, 168, 0.3);
     
 }
 
 
 button{
-    color: white;
-}
-
-#icono{
-    background-color: transparent !important;
+    color: white !important;
 }
 
 #icono img{
@@ -39,14 +35,10 @@ button{
     width: 300px;
 }
 
-#login-date{
-    background-color: transparent !important;
-}
-
 #label-mail, #label-password{
     width: 100%;
     background-color: rgb(201, 22, 22);
-    color: white;
+    color: white !important;
 }
 
 #login-error{
@@ -54,6 +46,7 @@ button{
 }
 
 @media (max-width: 480px) {
+
     #icono img{
         height: 180px;
         width: 180px;
